@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ôn Thi Tốt Nghiệp - Tổng hợp</title>
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="Trang ôn thi tốt nghiệp: Toán, Văn, Anh, Tin. Bài tập, đề thi mẫu, bình luận và góp ý." />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <h1 class="brand">Ôn Thi Tốt Nghiệp</h1>
+      <nav class="top-controls">
+        <button id="themeToggle" class="btn">Chuyển giao diện</button>
+        <button id="loginBtn" class="btn">Đăng nhập</button>
+      </nav>
+    </div>
+    <p class="tagline">Tổng hợp kiến thức & bài tập minh họa — giao diện dễ đọc, ví dụ rõ ràng</p>
+  </header>
+
+  <main class="wrap">
+    <section id="home" class="panel">
+      <h2 class="big">Chọn môn để bắt đầu</h2>
+      <div class="subjects" id="subjects"></div>
+
+      <hr/>
+      <h3 class="big">Chức năng nổi bật</h3>
+      <ul class="features">
+        <li>Học theo môn: Toán, Văn, Anh, Tin</li>
+        <li>Bài test có chấm điểm, đáp án và phần nhận xét</li>
+        <li>Bình luận bài học (lưu trên trình duyệt) và gửi góp ý qua email</li>
+        <li>Giao diện sáng/tối, chữ to, dễ đọc</li>
+        <li>Chế độ admin (login tuỳ chọn) để thêm/cập nhật nội dung</li>
+      </ul>
+    </section>
+
+    <section id="content" class="panel hidden">
+      <button id="backHome" class="btn">← Trở về</button>
+      <div id="lessonArea"></div>
+    </section>
+
+    <section id="adminPanel" class="panel hidden">
+      <h2 class="big">Bảng quản trị (Admin)</h2>
+      <form id="addLessonForm" class="card">
+        <label>Chọn môn
+          <select id="adminSubject">
+            <option value="toan">Toán</option>
+            <option value="van">Văn</option>
+            <option value="anh">Anh</option>
+            <option value="tin">Tin</option>
+          </select>
+        </label>
+        <label>Tiêu đề bài học
+          <input id="adminTitle" required />
+        </label>
+        <label>Nội dung bài học (HTML đơn giản)
+          <textarea id="adminContent" rows="6" placeholder="Ví dụ: <p>Giải tích... </p>"></textarea>
+        </label>
+        <label>Thêm 1 câu trắc nghiệm (JSON đơn giản)
+          <textarea id="adminQuiz" rows="4" placeholder='[{"q":"Câu?","choices":["A","B"],"answer":0,"explain":"Giải thích"}]'></textarea>
+        </label>
+        <div class="form-actions">
+          <button type="submit" class="btn">Lưu bài học</button>
+          <button id="exportBtn" type="button" class="btn">Xuất toàn bộ dữ liệu</button>
+          <label class="import">
+            <input id="importFile" type="file" accept=".json" />
+            Nhập dữ liệu
+          </label>
+        </div>
+      </form>
+    </section>
+
+    <section id="contact" class="panel hidden">
+      <h2 class="big">Gửi góp ý</h2>
+      <p>Nếu bạn muốn gửi góp ý chi tiết hơn, gửi email tới nhóm:</p>
+      <p><a id="mailtoLink" href="mailto:onti.group@example.com?subject=Góp%20ý%20Ôn%20Thi">onti.group@example.com</a></p>
+      <p>Hoặc dùng form dưới đây (mở mail mặc định):</p>
+      <form id="contactForm" class="card">
+        <label>Email của bạn <input id="contactEmail" type="email" required placeholder="you@example.com" /></label>
+        <label>Tiêu đề <input id="contactSubject" required /></label>
+        <label>Nội dung
+          <textarea id="contactBody" rows="6" required></textarea>
+        </label>
+        <button class="btn" id="sendContact">Gửi</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div class="footer-left">
+        <!-- Inline SVG làm hình ảnh chân trang -->
+        <svg width="120" height="80" viewBox="0 0 120 80" aria-hidden="true">
+          <rect width="120" height="80" rx="8" fill="#0b5" />
+          <text x="10" y="45" font-size="16" font-family="sans-serif" fill="#012">ÔnThi</text>
+        </svg>
+        <p class="small">Nhóm thực hiện: Tiến Hùng, Đắc Kiên, Anh Khuê, Anh Hoàng, Nhật Khánh</p>
+      </div>
+      <div class="footer-right">
+        <p class="small">© 2026 — Website học tập. Nội dung chính thức (đề thi, đề thu) vui lòng tải lên theo luật bản quyền và nguồn chính thức của Bộ Giáo dục.</p>
+        <p class="small">Bạn có thể dùng chức năng Admin để thêm đề thi chính thức.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div id="loginModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <h3>Đăng nhập (Admin)</h3>
+      <p>Đăng nhập để bật chế độ thêm/cập nhật nội dung. Đây là demo client-side.</p>
+      <label>Tên <input id="loginUser" /></label>
+      <label>Mật khẩu <input id="loginPass" type="password" /></label>
+      <div class="form-actions">
+        <button id="doLogin" class="btn">Đăng nhập</button>
+        <button id="closeLogin" class="btn">Hủy</button>
+      </div>
+    </div>
+  </div>
+
+  <template id="subjectBtnTpl">
+    <button class="subject-btn"></button>
+  </template>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
